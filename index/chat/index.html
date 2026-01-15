@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluation Chart</title>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #f4f6fb;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      text-align: center;
+      color: #1f2937;
+      font-size: 18px;
+    }
+
+    canvas {
+      max-height: 260px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>ผลการประเมินของคุณ</h2>
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <script>
+    // 🔹 รับค่าจาก Thunkable (Query String)
+    const params = new URLSearchParams(window.location.search);
+
+    const energy = Number(params.get('a')) || 0;
+    const mind   = Number(params.get('b')) || 0;
+    const focus  = Number(params.get('c')) || 0;
+    const life   = Number(params.get('d')) || 0;
+    const total  = Number(params.get('t')) || 0;
+
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Energy', 'Mind', 'Focus', 'Life', 'Total'],
+        datasets: [{
+          label: 'Score',
+          data: [energy, mind, focus, life, total],
+          backgroundColor: [
+            '#60A5FA', // Energy
+            '#34D399', // Mind
+            '#A78BFA', // Focus
+            '#FB923C', // Life
+            '#1E3A8A'  // Total (เด่น)
+          ],
+          borderRadius: 10
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#111827',
+            titleColor: '#fff',
+            bodyColor: '#fff',
+            cornerRadius: 8
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 10
+            },
+            grid: {
+              color: '#e5e7eb'
+            }
+          },
+          x: {
+            grid: {
+              display: false
+            }
+          }
+        },
+        animation: {
+          duration: 1200,
+          easing: 'easeOutQuart'
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
