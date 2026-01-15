@@ -1,0 +1,11 @@
+body {
+  margin: 0;              /* ตัดช่องว่างขอบหน้าจอทั้งหมดออก */
+  padding: 0;             /* ตัดช่องว่างภายใน body ออก */
+  overflow: hidden;       /* ซ่อน scrollbar ไม่ให้เลื่อนหน้าจอได้ เพื่อไม่ให้เห็น scroll bar เวลากลีบตก */
+  background: linear-gradient(to bottom, #ffe6f0, #fff0f5);
+  /* ตั้งพื้นหลังเป็นไล่เฉดสีแบบ gradient จากสีชมพูอ่อนด้านบน (#ffe6f0) ไล่ลงไปเป็นสีชมพูอ่อนอีกเฉดด้านล่าง (#fff0f5) */
+}
+
+canvas {
+  display: block;         /* กำหนดให้ canvas เป็นบล็อก ทำให้ไม่มีช่องว่างใต้ canvas (space ที่เกิดจาก inline element) */
+}
