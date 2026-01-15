@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thunkable Chart</title>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="myChart"></canvas>
+
+  <script>
+    // 🔹 รับค่าจาก URL (Query String)
+    const params = new URLSearchParams(window.location.search);
+
+    const a = Number(params.get('a')) || 0;
+    const b = Number(params.get('b')) || 0;
+    const c = Number(params.get('c')) || 0;
+    const d = Number(params.get('d')) || 0;
+    const e = Number(params.get('e')) || 0;
+
+    // 🔹 วาดกราฟ
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['A', 'B', 'C', 'D', 'E'],
+        datasets: [{
+          label: 'Data from Thunkable',
+          data: [a, b, c, d, e],
+          backgroundColor: '#4F46E5'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+  </script>
+
+</body>
+</html>
